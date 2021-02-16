@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>carrosel</title>
+        
+        <script src="https://kit.fontawesome.com/6d4b9a93a2.js" crossorigin="anonymous"></script>
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <div class="carrosel 0" id="carrosel">
+            <div class="arrow-left" onclick="Carrosel.backImage()" id="arrowLeft">
+                <i class="far fa-arrow-alt-circle-left"></i>
+            </div>
+
+            <img src="images/imagem1.jfif" alt="imagem tal tal tal">
+            <img src="images/imagem2.jfif" alt="imagem tal tal tal">
+            <img src="images/imagem3.jfif" alt="imagem tal tal tal">
+            <img src="images/imagem4.jfif" alt="imagem tal tal tal">
+            <img src="images/imagem5.jfif" alt="imagem tal tal tal">
+            <img src="images/imagem6.jfif" alt="imagem tal tal tal">
+
+            <div class="arrow-right" onclick="Carrosel.nextImage()" id="arrowRight">
+                <i class="far fa-arrow-alt-circle-right"></i>
+            </div>       
+
+            <div class="map-carrosel" id="map">
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+            </div>     
+        </div>
+
+        
+
+        <script src="/scripts/script.js"></script>
+    </body>
+</html>
