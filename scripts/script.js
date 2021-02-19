@@ -14,7 +14,7 @@ const Carrosel = {
 
         carrosel.forEach((element, index) => {
             const url = new URL(element.src)
-            Carrosel.addImages(url.pathname, index);
+            this.addImages(url.pathname, index);
         });
 
     },
@@ -32,22 +32,42 @@ const Carrosel = {
 
             if(index > 0 && index < images.length) {
                 index--;
+                
                 DOM.innerImage(images[index].image);
                 carrosel.classList.remove(`${index + 1}`);
                 carrosel.classList.add(`${index}`);
                 
                 if(index == 0) {
                     carrosel.classList.remove(`${index}`);
+                    carrosel.classList.add(`${index}`);
                 }
+
+                this.validateMap();
+                return;
             } 
+
+            if(index === 0) {
+                index = images.length - 1;
+                DOM.innerImage(images[index].image);
+
+                carrosel.classList.remove(`${'0'}`);
+                carrosel.classList.add(`${index}`);
+
+                this.removeSelect();
+                this.validateMap();
+            }
+
             return;
         }
+    
 
         if(index === 0) {
             index = images.length - 1;
             DOM.innerImage(images[index].image);
 
             carrosel.classList.add(`${index}`);
+            this.removeSelect()
+            this.validateMap();
         }
     },
 
@@ -61,12 +81,12 @@ const Carrosel = {
             if(index == 5) {
                 index = 0;
               
-                Carrosel.removeSelect();
+                this.removeSelect();
                 carrosel.classList.remove(`${images.length - 1}`);
                 carrosel.classList.add(`${index}`);
 
                 DOM.innerImage(images[index].image);
-                Carrosel.validateMap();
+                this.validateMap();
 
                 return;
             }
@@ -79,6 +99,7 @@ const Carrosel = {
                     DOM.innerImage(images[index].image);
                     carrosel.classList.remove(`${images.length - 1}`);
                     carrosel.classList.add(`${index}`);
+
                     return; 
                 }
 
@@ -90,21 +111,21 @@ const Carrosel = {
                     carrosel.classList.remove(`${index}`);
                 }
 
-                Carrosel.validateMap();
+                this.validateMap();
             } 
             return;
         }
 
         if(index === 0 || index === '0') {
             index++;
-            Carrosel.removeSelect();
+            this.removeSelect();
             DOM.innerImage(images[index].image);
             carrosel.classList.remove(`0`);
             carrosel.classList.add(`${index}`);
          
         }
 
-        Carrosel.validateMap();
+        this.validateMap();
     },
 
     carroselMap() {
@@ -114,7 +135,6 @@ const Carrosel = {
             map.children[index].style.backgroundImage = `url(${element.image})`;
             map.children[index].index = index;
         });
-
     },
 
     validateMap() {
@@ -122,7 +142,7 @@ const Carrosel = {
         const map = document.querySelector("#map");
         indexCarrosel = Number(carrosel.classList[1]);
 
-        Carrosel.removeSelect();
+        this.removeSelect();
 
         for(let i = 0; i < images.length; i++) {
 
